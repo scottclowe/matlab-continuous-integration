@@ -1,8 +1,21 @@
+env:
+ global:
+    - REPOPATH=`pwd`
+
 # command to install dependencies
 before_install:
+  - pwd
+
+  # Install octave with apt-get
   - sudo add-apt-repository -y ppa:octave/stable
   - sudo apt-get update -qq
   - sudo apt-get install octave
+
+  # go up one level to retrieve MOxUnit
+  - cd ..
+  - git clone git://github.com/MOxUnit/MOxUnit.git
+  - make -C MOxUnit install
+  - cd ${REPOPATH}
 
 install:
   - pwd
