@@ -1,5 +1,3 @@
-% Copyright 2015 The MathWorks, Inc.
-
 function angles = rightTri(sides)
 
 A = atand(sides(1)/sides(2));
