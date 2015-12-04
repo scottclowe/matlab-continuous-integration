@@ -1,0 +1,14 @@
+# We pretend to be C because we need GNU Octave which is not 
+# available (as of December 2015)
+language: c
+
+# command to install dependencies
+before_install:
+  - sudo add-apt-repository -y ppa:octave/stable
+  - sudo apt-get update -qq
+  - sudo apt-get install octave
+
+script:
+  - pwd
+  - /usr/bin/octave -q --eval "OCTAVE_VERSION"
+  # Don't actually run any tests yet
