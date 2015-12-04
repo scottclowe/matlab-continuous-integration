@@ -4,6 +4,10 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install octave
 
+install:
+  - pwd
+
 script:
   - pwd
   - /usr/bin/octave -q --eval "OCTAVE_VERSION"
+  - /usr/bin/octave -q --eval runAllTests
