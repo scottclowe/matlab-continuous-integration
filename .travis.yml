@@ -11,4 +11,4 @@ before_install:
 script:
   - pwd
   - /usr/bin/octave -q --eval "OCTAVE_VERSION"
-  # Don't actually run any tests yet
+  - /usr/bin/octave -q --eval runAllTests
