@@ -11,3 +11,6 @@ else
     disp('Builtin Matlab test suite');
     result = runtests(fullfile(pwd, 'funcs'), 'Recursively', true);
 end
+
+disp('MOxUnit test suite');
+moxunit_runtests tests_moxunit -verbose;
