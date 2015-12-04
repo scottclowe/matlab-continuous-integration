@@ -2,6 +2,9 @@
 # available (as of December 2015)
 language: c
 
+cache:
+  - apt
+
 env:
  global:
     - REPOPATH=`pwd`
