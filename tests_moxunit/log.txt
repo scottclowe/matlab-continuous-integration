@@ -1,0 +1,9 @@
+suite: 3 tests
+    passed: test_abs_scalar:  /home/scott/Documents/git/matlab-ci/tests_moxunit/my_test_of_abs.m
+    passed: test_abs_vector:  /home/scott/Documents/git/matlab-ci/tests_moxunit/my_test_of_abs.m
+    passed: test_abs_exceptions:  /home/scott/Documents/git/matlab-ci/tests_moxunit/my_test_of_abs.m
+
+
+--------------------------------------------------
+
+OK
