@@ -1,4 +1,6 @@
-addpath(genpath('funcs'));
+% NB: Need to use fullfile when adding paths so that Octave plays
+% nicely with MOxUnit
+addpath(genpath(fullfile(pwd,'funcs')));
 
 if isoctave
     % Octave
