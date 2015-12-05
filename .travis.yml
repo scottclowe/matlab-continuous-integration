@@ -27,4 +27,4 @@ before_install:
 script:
   - pwd
   - /usr/bin/octave -q --eval "OCTAVE_VERSION"
-  - /usr/bin/octave -q --eval runAllTests
+  - /usr/bin/octave -q --eval "exit(~runAllTests)"

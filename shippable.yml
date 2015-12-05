@@ -25,5 +25,7 @@ before_script:
 script:
   - pwd
   - /usr/bin/octave -q --eval "OCTAVE_VERSION"
-  - /usr/bin/octave -q --eval runAllTests
+  - /usr/bin/octave -q --eval "exit(~runAllTests)"
+
+after_script:
   - mv testresults.xml shippable/testresults/
