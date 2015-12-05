@@ -8,8 +8,15 @@ function test_abs_scalar
     assertEqual(abs(0),0)
     assertElementsAlmostEqual(abs(-1e-13),0)
 
+function test_abs_skip
+    moxunit_throw_test_skipped_exception('2 is not really 3.');
+    assertEqual(2, 3);
+
 function test_abs_vector
     assertEqual(abs([-1 1 -3]),[1 1 3]);
+
+function test_abs_error
+    assertEqual(7, 8);
 
 function test_abs_exceptions
     % GNU Octave and Matlab use different error identifiers
