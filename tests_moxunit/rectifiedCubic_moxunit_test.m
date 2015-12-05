@@ -35,3 +35,23 @@ function test_rectifiedCubic_skips()
     moxunit_throw_test_skipped_exception('hmm nor should this');
     assert(isequal(1, rectifiedCubic(-1)))
 end
+
+function test_skip_success()
+    moxunit_throw_test_skipped_exception('this might not be skipped');
+    assertTrue(true);
+end
+
+function test_timing()
+    pause(0.5);
+    assertTrue(true);
+end
+
+function test_string_equality_failure()
+    assertEqual('foo','bar');
+end
+function test_cell_equality_failure()
+    assertEqual({},{'bar'});
+end
+function test_class_equality_failure()
+    assertEqual('foo',{'bar'});
+end
