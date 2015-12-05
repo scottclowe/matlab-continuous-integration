@@ -2,7 +2,9 @@
 % nicely with MOxUnit
 addpath(genpath(fullfile(pwd,'funcs')));
 
-if isoctave
+if true
+    % Do nothing
+elseif isoctave
     % Octave
     disp('Builtin octave test suite');
     runtests('./tests_octave');
