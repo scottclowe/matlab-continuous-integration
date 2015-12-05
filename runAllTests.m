@@ -15,4 +15,4 @@ else
 end
 
 disp('MOxUnit test suite');
-moxunit_runtests tests_moxunit -verbose;
+moxunit_runtests tests_moxunit -verbose -junitxml testresults.xml;
