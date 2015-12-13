@@ -17,4 +17,4 @@ function result = runAllTests()
 
     disp('MOxUnit test suite');
     result = moxunit_runtests('tests_moxunit', '-verbose', ...
-                              '-junitxml', 'testresults.xml');
+                              '-junit_xml', 'testresults.xml');
