@@ -4,12 +4,12 @@ function tf = isoctave()
 %   it returns false, indicating the environment is something else
 %   (MATLAB, Scilab, FreeMat, etc).
 
-persistent tf_;
+persistent tf_cached;
 
-if isempty(tf_)
-  tf_ = exist('OCTAVE_VERSION','builtin') ~= 0;
+if isempty(tf_cached)
+  tf_cached = exist('OCTAVE_VERSION','builtin') ~= 0;
 end
 
-tf = tf_;
+tf = tf_cached;
 
 end
