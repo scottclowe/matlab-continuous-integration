@@ -85,7 +85,9 @@ before_script:
 
 ################################################################################
 script:
-  - /usr/bin/octave -q --eval "exit(~runAllTests)"
+  - PATH_COMMAND="addpath(genpath(fullfile(pwd,'funcs')));"
+  - TEST_COMMAND="exit(~moxunit_runtests('tests_moxunit', '-verbose', '-junit_xml', 'testresults.xml');";
+  - /usr/bin/octave -q --eval "$PATH_COMMAND $TEST_COMMAND";
 
 ################################################################################
 after_script:
