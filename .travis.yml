@@ -64,7 +64,9 @@ before_install:
 ################################################################################
 install:
   # Install required packages from Octave Forge
-  - install_packages requirements.txt
+  - if [ -f requirements.txt ]; then
+      install_packages requirements.txt;
+    fi;
 
 ################################################################################
 after_install:
