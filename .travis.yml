@@ -14,18 +14,29 @@ before_install:
   - pwd
   - REPOPATH=`pwd`
   # ----------------------------------------------------------------------------
+  # Check whether we need to upgrade the gcc and g++ versions. We do need to if
+  # the version is less the 4.8 and we need to install the image package from
+  # Octave Forge (possibly for other packages as well).
+  # For now, lets just always say we do need to do this.
+  - UPGRADE_GCC="true"
+  # ----------------------------------------------------------------------------
   # Add repository for octave
   - sudo add-apt-repository -y ppa:octave/stable
-  # Add repository for g++-4.8
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  # Add repository for installing g++-4.8 on Ubuntu 12.04
+  - if [ "$UPGRADE_GCC" = "true" ]; then
+      sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;
+    fi
   # Update apt-get to include the contents from the new locations
   - sudo apt-get update -qq
   # Install octave with apt-get
   - sudo apt-get install -y octave liboctave-dev
   # Add a C++11 compiler so we can install image package
-  - sudo apt-get install -y gcc-4.8 g++-4.8
-  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
+  - if [ "$UPGRADE_GCC" = "true" ]; then
+      sudo apt-get install -y gcc-4.8 g++-4.8;
+      sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50;
+      sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50;
+    fi;
+  # Check which versions of g++ and gcc we are using
   - which g++
   - g++ --version
   - which gcc
