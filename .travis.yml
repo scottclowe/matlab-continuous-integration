@@ -2,29 +2,60 @@
 # available (as of December 2015)
 language: c
 
+################################################################################
 cache:
+  # Downloading octave takes a while, so let's cache apt
   - apt
 
-env:
- global:
-    - REPOPATH=`pwd`
-
-# command to install dependencies
+################################################################################
+# Command to install dependencies
 before_install:
+  # Remember the directory where our repository to test is located
   - pwd
-
+  - REPOPATH=`pwd`
+  # ----------------------------------------------------------------------------
   # Install octave with apt-get
   - sudo add-apt-repository -y ppa:octave/stable
   - sudo apt-get update -qq
   - sudo apt-get install octave
-
-  # go up one level to retrieve MOxUnit
+  # ----------------------------------------------------------------------------
+  # Go up one level and retrieve MOxUnit from its repository
   - cd ..
   - git clone https://github.com/MOxUnit/MOxUnit.git
+  # Install MOxUnit, which adds itself to the startup path
   - make -C MOxUnit install
+  # Go back to the repository directory
   - cd ${REPOPATH}
 
-script:
+################################################################################
+after_install:
+  # Double-check we are still in the right directory
   - pwd
-  - /usr/bin/octave -q --eval "OCTAVE_VERSION"
+  # Check what octave packages we have installed
+  - /usr/bin/octave -q --eval "ver"
+
+################################################################################
+before_script:
+  # Set up folders for test results
+  - if [ "$SHIPPABLE" = "true" ]; then
+      mkdir -p shippable/testresults;
+      mkdir -p shippable/codecoverage;
+    fi;
+
+################################################################################
+script:
   - /usr/bin/octave -q --eval "exit(~runAllTests)"
+
+################################################################################
+after_script:
+  # Check where we ended up and what's going on where we are
+  - pwd
+  - ls -alh
+  # ----------------------------------------------------------------------------
+  # Move results and coverage files into appropriate places
+  - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then
+      mv testresults.xml shippable/testresults/;
+    fi;
+  - if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
+      mv coverage.xml shippable/codecoverage/;
+    fi;
