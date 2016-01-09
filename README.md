@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/scottclowe/matlab-ci.svg)](https://travis-ci.org/scottclowe/matlab-ci)
 [![Shippable branch](https://img.shields.io/shippable/565d50661895ca44742504ec/master.svg)](https://app.shippable.com/projects/565d50661895ca44742504ec)
 
-# MATLAB-CI
+# matlab-ci
 
 A method of doing Continuous integration on a CI server when developing in MATLAB.
 
