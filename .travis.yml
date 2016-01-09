@@ -1,5 +1,5 @@
-# We pretend to be C because we need GNU Octave which is not 
-# available (as of December 2015)
+# We pretend to be Java because we need GNU Octave which is not 
+# available (as of January 2016)
 language: java
 
 ################################################################################
