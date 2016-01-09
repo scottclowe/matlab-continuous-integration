@@ -86,7 +86,7 @@ before_script:
 ################################################################################
 script:
   - PATH_COMMAND="addpath(genpath(fullfile(pwd,'funcs')));"
-  - TEST_COMMAND="exit(~moxunit_runtests('tests_moxunit', '-verbose', '-junit_xml', 'testresults.xml');";
+  - TEST_COMMAND="exit(~moxunit_runtests('tests', '-verbose', '-junit_xml', 'testresults.xml');";
   - /usr/bin/octave -q --eval "$PATH_COMMAND $TEST_COMMAND";
 
 ################################################################################
