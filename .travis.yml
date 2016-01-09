@@ -80,14 +80,12 @@ install:
     fi;
 
 ################################################################################
-after_install:
+before_script:
   # Double-check we are still in the right directory
   - pwd
   # Check what octave packages we have installed
   - octave -q --eval "ver"
-
-################################################################################
-before_script:
+  # ----------------------------------------------------------------------------
   # Set up folders for test results
   - if [ "$SHIPPABLE" = "true" ]; then
       mkdir -p shippable/testresults;
