@@ -44,6 +44,9 @@ before_install:
   # ----------------------------------------------------------------------------
   # Go up one level and retrieve MOxUnit from its repository
   - cd ..
+  - ls -alh
+  # Remove directory if it is already there from previous build
+  - if [ -d MOxUnit ]; then rm -r MOxUnit; fi;
   - git clone https://github.com/MOxUnit/MOxUnit.git
   # Install MOxUnit, which adds itself to the startup path
   - make -C MOxUnit install
