@@ -58,6 +58,7 @@ before_install:
   - function install_packages {
         touch ~/.octaverc;
         while read PN; do
+          PN="$(echo $PN | sed 's/^\([^=<>]*\).*/\1/')";
           echo "";
           echo "==================================================================";
           echo "Installing $PN from Octave Forge";
