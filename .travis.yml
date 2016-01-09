@@ -40,6 +40,17 @@ before_install:
   - cd ${REPOPATH}
 
 ################################################################################
+install:
+  # Install requirements from Forge
+  # Add them to .octaverc so they are always loaded on launch
+  - touch ~/.octaverc
+  - while read PN; do
+      echo "Installing $PN from Octave Forge";
+      octave -q --eval "pkg install -forge $PN";
+      echo "pkg load $PN;" >> ~/.octaverc;
+    done < requirements.txt
+
+################################################################################
 after_install:
   # Double-check we are still in the right directory
   - pwd
