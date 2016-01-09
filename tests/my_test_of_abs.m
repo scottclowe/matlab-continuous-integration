@@ -15,7 +15,7 @@ function test_abs_skip
 function test_abs_vector
     assertEqual(abs([-1 1 -3]),[1 1 3]);
 
-function test_abs_error
+function ignored_test_abs_error
     assertEqual(7, 8);
 
 function test_abs_exceptions

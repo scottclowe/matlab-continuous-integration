@@ -12,7 +12,7 @@ function test_rectifiedCubic_main()
     assert(isequal(27, rectifiedCubic(3)))
 end
 
-function test_rectifiedCubic_fails()
+function ignored_test_rectifiedCubic_fails()
     % This is ok
     assert(isequal(27, rectifiedCubic(3)))
     % This is not and should fail
@@ -46,12 +46,14 @@ function test_timing()
     assertTrue(true);
 end
 
-function test_string_equality_failure()
+function ignored_test_string_equality_failure()
     assertEqual('foo','bar');
 end
-function test_cell_equality_failure()
+
+function ignored_test_cell_equality_failure()
     assertEqual({},{'bar'});
 end
-function test_class_equality_failure()
+
+function ignored_test_class_equality_failure()
     assertEqual('foo',{'bar'});
 end
