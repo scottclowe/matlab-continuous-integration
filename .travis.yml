@@ -38,17 +38,33 @@ before_install:
   - make -C MOxUnit install
   # Go back to the repository directory
   - cd ${REPOPATH}
+  # ----------------------------------------------------------------------------
+  # Define a helper function which installs dependencies listed in a file from
+  # Octave Forge and makes sure they are loaded whenever octave is launched.
+  - function install_packages {
+        touch ~/.octaverc;
+        while read PN; do
+          echo "";
+          echo "==================================================================";
+          echo "Installing $PN from Octave Forge";
+          echo "------------------------------------------------------------------";
+          octave -q --eval "pkg install -forge $PN";
+          if [[ $? -ne 0 ]]; then
+            echo "Failed to install $PN from forge";
+            return 1;
+          fi;
+          echo "pkg load $PN;" >> ~/.octaverc;
+          if [[ $? -ne 0 ]]; then
+            echo "Failed to add pkg load $PN instruction to .octaverc";
+            return 1;
+          fi;
+        done < $1;
+    }
 
 ################################################################################
 install:
-  # Install requirements from Forge
-  # Add them to .octaverc so they are always loaded on launch
-  - touch ~/.octaverc
-  - while read PN; do
-      echo "Installing $PN from Octave Forge";
-      octave -q --eval "pkg install -forge $PN";
-      echo "pkg load $PN;" >> ~/.octaverc;
-    done < requirements.txt
+  # Install required packages from Octave Forge
+  - install_packages requirements.txt
 
 ################################################################################
 after_install:
