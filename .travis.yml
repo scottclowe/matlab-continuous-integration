@@ -73,7 +73,7 @@ after_install:
   # Double-check we are still in the right directory
   - pwd
   # Check what octave packages we have installed
-  - /usr/bin/octave -q --eval "ver"
+  - octave -q --eval "ver"
 
 ################################################################################
 before_script:
@@ -87,7 +87,7 @@ before_script:
 script:
   - PATH_COMMAND="addpath(genpath(fullfile(pwd,'funcs')));"
   - TEST_COMMAND="exit(~moxunit_runtests('tests','-verbose','-junit_xml','testresults.xml'));"
-  - /usr/bin/octave -q --eval "$PATH_COMMAND $TEST_COMMAND";
+  - octave -q --eval "$PATH_COMMAND $TEST_COMMAND";
 
 ################################################################################
 after_script:
