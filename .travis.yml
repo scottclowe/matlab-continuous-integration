@@ -1,6 +1,6 @@
 # We pretend to be C because we need GNU Octave which is not 
 # available (as of December 2015)
-language: c
+language: java
 
 ################################################################################
 cache:
