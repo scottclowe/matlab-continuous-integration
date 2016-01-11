@@ -1,3 +1,5 @@
+% Tests for rectifiedCubic, implemented with the MOxUnit framework
+
 function test_suite=rectifiedCubic_test()
     initTestSuite
 end

@@ -1,3 +1,5 @@
+% Tests for abs, implemented with the MOxUnit framework
+
 function test_suite=my_test_of_abs
     initTestSuite
 
