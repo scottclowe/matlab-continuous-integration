@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/scottclowe/matlab-ci.svg)](https://travis-ci.org/scottclowe/matlab-ci)
+[![Build Status](https://travis-ci.org/scottclowe/matlab-continuous-integration.svg?branch=master)](https://travis-ci.org/scottclowe/matlab-continuous-integration)
 [![Shippable branch](https://img.shields.io/shippable/565d50661895ca44742504ec/master.svg)](https://app.shippable.com/projects/565d50661895ca44742504ec)
 
 # matlab-ci
