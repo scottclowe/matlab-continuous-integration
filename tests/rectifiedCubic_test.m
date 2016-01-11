@@ -1,4 +1,4 @@
-function test_suite=rectifiedCubic_moxunit_test()
+function test_suite=rectifiedCubic_test()
     initTestSuite
 end
 
