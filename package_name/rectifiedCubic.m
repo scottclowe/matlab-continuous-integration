@@ -7,8 +7,12 @@
 
 function y = rectifiedCubic(x)
 
+    % Input handling ----------------------------------------------------------
+    % Ensure input is numeric
     assert(isnumeric(x), 'Input must be numeric');
 
+    % Main --------------------------------------------------------------------
+    % Do the rectified cubic calculation
     y = max(0, x.^3);
 
 end
