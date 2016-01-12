@@ -12,7 +12,11 @@ function y = rectifiedCubic(x)
     assert(isnumeric(x), 'Input must be numeric');
 
     % Main --------------------------------------------------------------------
+    % Remember which values were NaNs
+    li = isnan(x);
     % Do the rectified cubic calculation
     y = max(0, x.^3);
+    % Restore NaN values (lost because max(0,NaN) is 0, not NaN).
+    y(li) = NaN;
 
 end
