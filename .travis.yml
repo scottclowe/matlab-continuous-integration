@@ -2,24 +2,24 @@
 # available (as of January 2016)
 language: java
 
-################################################################################
+###############################################################################
 cache:
   # Downloading octave takes a while, so let's cache apt
   - apt
 
-################################################################################
+###############################################################################
 # Command to install dependencies
 before_install:
   # Remember the directory where our repository to test is located
   - pwd
   - REPOPATH=`pwd`
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Check whether we need to upgrade the gcc and g++ versions. We do need to if
   # the version is less the 4.8 and we need to install the image package from
   # Octave Forge (possibly for other packages as well).
   # For now, lets just always say we do need to do this.
   - UPGRADE_GCC="true"
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Add repository for octave
   - sudo add-apt-repository -y ppa:octave/stable
   # Add repository for installing g++-4.8 on Ubuntu 12.04
@@ -41,7 +41,7 @@ before_install:
   - g++ --version
   - which gcc
   - gcc --version
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Go up one level and retrieve MOxUnit from its repository
   - cd ..
   - ls -alh
@@ -52,7 +52,7 @@ before_install:
   - make -C MOxUnit install
   # Go back to the repository directory
   - cd ${REPOPATH}
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Define a helper function which installs dependencies listed in a file from
   # Octave Forge and makes sure they are loaded whenever octave is launched.
   - function install_packages {
@@ -76,38 +76,38 @@ before_install:
         done < $1;
     }
 
-################################################################################
+###############################################################################
 install:
   # Install required packages from Octave Forge
   - if [ -f requirements.txt ]; then
       install_packages requirements.txt;
     fi;
 
-################################################################################
+###############################################################################
 before_script:
   # Double-check we are still in the right directory
   - pwd
   # Check what octave packages we have installed
   - octave -q --eval "ver"
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Set up folders for test results
   - if [ "$SHIPPABLE" = "true" ]; then
       mkdir -p shippable/testresults;
       mkdir -p shippable/codecoverage;
     fi;
 
-################################################################################
+###############################################################################
 script:
   - PATH_COMMAND="addpath(genpath(fullfile(pwd,'package_name')));"
   - TEST_COMMAND="exit(~moxunit_runtests('tests','-verbose','-junit_xml','testresults.xml'));"
   - octave -q --eval "$PATH_COMMAND $TEST_COMMAND";
 
-################################################################################
+###############################################################################
 after_script:
   # Check where we ended up and what's going on where we are
   - pwd
   - ls -alh
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Move results and coverage files into appropriate places
   - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then
       mv testresults.xml shippable/testresults/;
