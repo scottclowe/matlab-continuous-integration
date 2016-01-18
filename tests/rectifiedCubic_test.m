@@ -21,6 +21,10 @@ function test_integer()
     assertEqual(rectifiedCubic(2), 8);
     assertEqual(rectifiedCubic(-2), 0);
     assertEqual(rectifiedCubic(3), 27);
+end
+
+function test_int8()
+    % Check the function preserves the class for int8 input.
     assertEqual(rectifiedCubic(int8(5)), int8(125));
 end
 
@@ -32,13 +36,19 @@ function test_float()
     assertElementsAlmostEqual(rectifiedCubic(-1.2), 0);
 end
 
-function test_vector()
+function test_empty()
     % Test empty vector input
     assertEqual(rectifiedCubic([]), []);
+end
+
+function test_vector()
     % Check the function works for row vectors
     assertEqual(rectifiedCubic([0, 2, -2]), [0, 8, 0]);
     % and for column vectors too
     assertEqual(rectifiedCubic([0; 2; -2]), [0; 8; 0]);
+end
+
+function test_colon()
     % Need to use assertElementsAlmostEqual when working with colon
     % because the elements it generates are not precisely integers.
     assertElementsAlmostEqual(rectifiedCubic(-3:3), [0, 0, 0, 0, 1, 8, 27]);
