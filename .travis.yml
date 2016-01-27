@@ -21,18 +21,18 @@ before_install:
   - UPGRADE_GCC="true"
   # ---------------------------------------------------------------------------
   # Add repository for octave
-  - sudo add-apt-repository -y ppa:octave/stable
+  - travis_retry sudo add-apt-repository -y ppa:octave/stable
   # Add repository for installing g++-4.8 on Ubuntu 12.04
   - if [ "$UPGRADE_GCC" = "true" ]; then
       sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;
     fi
   # Update apt-get to include the contents from the new locations
-  - sudo apt-get update -qq
+  - travis_retry sudo apt-get update -qq
   # Install octave with apt-get
-  - sudo apt-get install -y octave liboctave-dev
+  - travis_retry sudo apt-get install -y octave liboctave-dev
   # Add a C++11 compiler so we can install image package
   - if [ "$UPGRADE_GCC" = "true" ]; then
-      sudo apt-get install -y gcc-4.8 g++-4.8;
+      travis_retry sudo apt-get install -y gcc-4.8 g++-4.8;
       sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50;
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50;
     fi;
