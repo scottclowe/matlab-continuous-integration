@@ -57,7 +57,7 @@ before_install:
   # Octave Forge and makes sure they are loaded whenever octave is launched.
   - function install_packages {
         while read PN; do
-          PN="$(echo $PN | sed 's/^\([^=<>]*\).*/\1/')";
+          PN="$(echo $PN | sed 's/^\([^=<>~ ]*\).*/\1/')";
           echo "";
           echo "==================================================================";
           echo "Installing $PN from Octave Forge";
