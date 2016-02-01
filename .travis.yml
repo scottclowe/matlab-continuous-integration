@@ -108,6 +108,7 @@ before_script:
   - rm -f testresults.xml;
     rm -f coverage.xml;
     rm -f .coverage;
+    rm -f coveralls.json;
   # ---------------------------------------------------------------------------
   # Set up folders for test results on Shippable
   - if [ "$SHIPPABLE" = "true" ]; then
