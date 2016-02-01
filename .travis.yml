@@ -76,7 +76,7 @@ install:
   - if [ -f requirements.txt ]; then
       install_packages requirements.txt;
     fi;
-  - PATH_COMMAND="addpath(genpath(fullfile(pwd,'package_name')));";
+  - ADDPATH_COMMAND="addpath(genpath(fullfile(pwd,'package_name')));";
 
 ###############################################################################
 before_script:
@@ -100,7 +100,7 @@ before_script:
 
 ###############################################################################
 script:
-  - octave -q --eval "$PATH_COMMAND $TEST_COMMAND";
+  - octave -q --eval "$ADDPATH_COMMAND $TEST_COMMAND";
 
 ###############################################################################
 after_script:
