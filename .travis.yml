@@ -16,8 +16,7 @@ env:
 # Command to install dependencies
 before_install:
   # Remember the directory where our repository to test is located
-  - pwd
-  - REPOPATH=`pwd`
+  - REPOPATH="$(pwd)" && pwd
   # ---------------------------------------------------------------------------
   # Check whether we need to upgrade the gcc and g++ versions. We do need to if
   # the version is less the 4.8 and we need to install the image package from
@@ -42,14 +41,14 @@ before_install:
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50;
     fi;
   # Check which versions of g++ and gcc we are using
-  - which g++
-  - g++ --version
-  - which gcc
-  - gcc --version
+  - which g++;
+    g++ --version;
+    which gcc;
+    gcc --version;
   # ---------------------------------------------------------------------------
   # Go up one level and retrieve MOxUnit from its repository
-  - cd ..
-  - ls -alh
+  - cd ..;
+    ls -alh;
   # Remove directory if it is already there from previous build
   - rm -rf MOxUnit;
   - git clone https://github.com/MOxUnit/MOxUnit.git
