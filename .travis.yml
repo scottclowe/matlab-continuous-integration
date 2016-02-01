@@ -8,6 +8,11 @@ cache:
   - apt
 
 ###############################################################################
+env:
+  global:
+    - COVERAGE="true"
+
+###############################################################################
 # Command to install dependencies
 before_install:
   # Remember the directory where our repository to test is located
@@ -50,6 +55,12 @@ before_install:
   - git clone https://github.com/MOxUnit/MOxUnit.git
   # Install MOxUnit, which adds itself to the startup path
   - make -C MOxUnit install
+  # Install MOcov, which adds itself to the startup path
+  - if [ "$COVERAGE" = "true" ]; then
+        rm -rf MOcov;
+        git clone https://github.com/MOcov/MOcov.git;
+        make -C MOcov install;
+    fi;
   # Go back to the repository directory
   - cd ${REPOPATH}
   # ---------------------------------------------------------------------------
@@ -83,6 +94,9 @@ install:
 ###############################################################################
 before_script:
   - TEST_ARGS="'-recursive', '-verbose', '-junit_xml_file', 'testresults.xml'";
+    if [ "$COVERAGE" = "true" ]; then
+        TEST_ARGS+=", '-with_coverage', '-cover', '$PACKAGE_FOLDER', '-cover_xml_file', 'coverage.xml', '-cover_json_file', 'coveralls.json'";
+    fi;
     TEST_COMMAND="exit(~moxunit_runtests('tests', $TEST_ARGS));";
     echo "TEST_COMMAND| $TEST_COMMAND";
   # Double-check we are still in the right directory
