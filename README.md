@@ -1,5 +1,7 @@
 [![Travis build](https://travis-ci.org/scottclowe/matlab-continuous-integration.svg?branch=master)](https://travis-ci.org/scottclowe/matlab-continuous-integration)
 [![Shippable build](https://img.shields.io/shippable/565d50661895ca44742504ec/master.svg?label=shippable)](https://app.shippable.com/projects/565d50661895ca44742504ec)
+[![Coveralls report](https://coveralls.io/repos/scottclowe/matlab-continuous-integration/badge.svg?branch=master&service=github)](https://coveralls.io/github/scottclowe/matlab-continuous-integration?branch=master)
+[![Codecov report](https://codecov.io/github/scottclowe/matlab-continuous-integration/coverage.svg?branch=master)](https://codecov.io/github/scottclowe/matlab-continuous-integration?branch=master)
 
 # matlab-ci
 
