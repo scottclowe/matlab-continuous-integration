@@ -133,3 +133,20 @@ after_script:
     if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
       cp coverage.xml shippable/codecoverage/;
     fi;
+
+###############################################################################
+after_success:
+  # Only run coveralls on Travis. When running on a public Travis-CI, the
+  # repo token is automatically inferred, but to run coveralls on Shippable
+  # the repo token needs to be specified in a .coveralls.yml or as an
+  # environment variable COVERALLS_REPO_TOKEN. This should be kept hidden
+  # from public viewing, either by encrypting the token or running on a
+  # private build.
+  # We ignore coverage push failures because the servers are not 100%
+  # reliable and we don't want the CI to report a failure just because the
+  # coverage report wasn't published.
+  # For Codecov, we use this https://github.com/codecov/codecov-bash
+  - if [ "$COVERAGE" = "true" ] && [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
+      curl --verbose -F json_file=@`pwd`/coveralls.json https://coveralls.io/api/v1/jobs  || echo "Coveralls push failed";
+      bash <(curl -s https://codecov.io/bash) || echo "Codecov push failed";
+    fi;
