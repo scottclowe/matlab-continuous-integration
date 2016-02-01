@@ -76,9 +76,11 @@ install:
   - if [ -f requirements.txt ]; then
       install_packages requirements.txt;
     fi;
+  - PATH_COMMAND="addpath(genpath(fullfile(pwd,'package_name')));";
 
 ###############################################################################
 before_script:
+  - TEST_COMMAND="exit(~moxunit_runtests('tests','-recursive','-verbose','-junit_xml_file','testresults.xml'));";
   # Double-check we are still in the right directory
   - pwd
   # Check what octave packages we have installed
@@ -98,8 +100,6 @@ before_script:
 
 ###############################################################################
 script:
-  - PATH_COMMAND="addpath(genpath(fullfile(pwd,'package_name')));"
-  - TEST_COMMAND="exit(~moxunit_runtests('tests','-recursive','-verbose','-junit_xml_file','testresults.xml'));"
   - octave -q --eval "$PATH_COMMAND $TEST_COMMAND";
 
 ###############################################################################
