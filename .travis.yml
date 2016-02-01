@@ -76,11 +76,15 @@ install:
   - if [ -f requirements.txt ]; then
       install_packages requirements.txt;
     fi;
-  - ADDPATH_COMMAND="addpath(genpath(fullfile(pwd,'package_name')));";
+  - PACKAGE_FOLDER="package_name";
+    ADDPATH_COMMAND="addpath(genpath(fullfile(pwd, '$PACKAGE_FOLDER')));";
+    echo "ADDPATH_COMMAND| $ADDPATH_COMMAND";
 
 ###############################################################################
 before_script:
-  - TEST_COMMAND="exit(~moxunit_runtests('tests','-recursive','-verbose','-junit_xml_file','testresults.xml'));";
+  - TEST_ARGS="'-recursive', '-verbose', '-junit_xml_file', 'testresults.xml'";
+    TEST_COMMAND="exit(~moxunit_runtests('tests', $TEST_ARGS));";
+    echo "TEST_COMMAND| $TEST_COMMAND";
   # Double-check we are still in the right directory
   - pwd
   # Check what octave packages we have installed
