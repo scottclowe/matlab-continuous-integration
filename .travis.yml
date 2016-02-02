@@ -62,29 +62,12 @@ before_install:
     fi;
   # Go back to the repository directory
   - cd ${REPOPATH}
-  # ---------------------------------------------------------------------------
-  # Define a helper function which installs dependencies listed in a file from
-  # Octave Forge and makes sure they are loaded whenever octave is launched.
-  - function install_packages {
-        while read PN; do
-          PN="$(echo $PN | sed 's/^\([^=<>~ ]*\).*/\1/')";
-          echo "";
-          echo "==================================================================";
-          echo "Installing $PN from Octave Forge";
-          echo "------------------------------------------------------------------";
-          octave -q --eval "pkg install -auto -forge $PN";
-          if [[ $? -ne 0 ]]; then
-            echo "Failed to install $PN from forge";
-            return 1;
-          fi;
-        done < $1;
-    }
 
 ###############################################################################
 install:
   # Install required packages from Octave Forge
   - if [ -f requirements.txt ]; then
-      install_packages requirements.txt;
+      ./install_packages.sh requirements.txt;
     fi;
   - PACKAGE_FOLDER="package_name";
     ADDPATH_COMMAND="addpath(genpath(fullfile(pwd, '$PACKAGE_FOLDER')));";
