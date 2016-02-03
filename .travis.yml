@@ -66,8 +66,8 @@ before_install:
 ###############################################################################
 install:
   # Install required packages from Octave Forge
-  - if [ -f requirements.txt ]; then
-      ./install_packages.sh requirements.txt;
+  - if [ -f requirements-octave.txt ]; then
+      ./install_packages.sh requirements-octave.txt;
     fi;
   - PACKAGE_FOLDER="package_name";
     ADDPATH_COMMAND="addpath(genpath(fullfile(pwd, '$PACKAGE_FOLDER')));";
