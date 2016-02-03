@@ -5,7 +5,10 @@ language: java
 ###############################################################################
 cache:
   # Downloading octave takes a while, so let's cache apt
-  - apt
+  apt: true
+  directories:
+    # Cache octave packages
+    - $HOME/octave
 
 ###############################################################################
 env:
