@@ -1,5 +1,2 @@
 image
 io
-control
-signal
-statistics
