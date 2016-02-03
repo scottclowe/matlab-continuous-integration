@@ -153,11 +153,18 @@ function extract {
             false;;
     esac;
     # 7z is a Swiss-army knife for decompression, so try that
-    if [[ $? -ne 0 ]];
+    RESULT=$?;
+    if [[ $RESULT -ne 0 ]];
     then
         command -v 7z >/dev/null 2>&1 \
             && 7z x "$1";
+        RESULT=$?;
     fi;
+    if [[ $RESULT -ne 0 ]];
+    then
+        echo "extract: '$1' - extraction failed";
+    fi;
+    return $RESULT;
 }
 # -----------------------------------------------------------------------------
 # install_forge
