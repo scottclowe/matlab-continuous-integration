@@ -9,6 +9,8 @@ cache:
   directories:
     # Cache octave packages
     - $HOME/octave
+    # Cache other packages
+    - $HOME/external_cache
 
 ###############################################################################
 env:
@@ -68,12 +70,22 @@ before_install:
 
 ###############################################################################
 install:
-  # Install required packages from Octave Forge
+  # Ensure external packages folder exists and is empty
+  - rm -rf external;
+    mkdir -p external;
+  # Install required packages for Octave
   - if [ -f requirements-octave.txt ]; then
-      ./install_packages.sh requirements-octave.txt;
+      ./install_packages.sh requirements-octave.txt external "$HOME/external_cache";
     fi;
+  # Install other required packages
+  - if [ -f requirements.txt ]; then
+      ./install_packages.sh requirements.txt external "$HOME/external_cache";
+    fi;
+  # Before running the tests, we will have to add our package and our
+  # external dependencies to the octave path
   - PACKAGE_FOLDER="package_name";
     ADDPATH_COMMAND="addpath(genpath(fullfile(pwd, '$PACKAGE_FOLDER')));";
+    ADDPATH_COMMAND+=" addpath(genpath(fullfile(pwd, 'external')));";
     echo "ADDPATH_COMMAND| $ADDPATH_COMMAND";
 
 ###############################################################################
