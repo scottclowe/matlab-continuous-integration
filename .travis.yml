@@ -81,6 +81,10 @@ install:
   - if [ -f requirements.txt ]; then
       ./install_packages.sh requirements.txt external "$HOME/external_cache";
     fi;
+  # Install developmental requirements
+  - if [ -f requirements-dev.txt ]; then
+      ./install_packages.sh requirements-dev.txt external "$HOME/external_cache";
+    fi;
   # Before running the tests, we will have to add our package and our
   # external dependencies to the octave path
   - PACKAGE_FOLDER="package_name";
