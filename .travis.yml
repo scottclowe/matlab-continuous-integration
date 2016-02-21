@@ -14,8 +14,14 @@ cache:
 
 ###############################################################################
 env:
-  global:
+  matrix:
+    - COVERAGE="false"
     - COVERAGE="true"
+
+matrix:
+  allow_failures:
+    - env: COVERAGE="true"
+  fast_finish: true
 
 ###############################################################################
 # Command to install dependencies
