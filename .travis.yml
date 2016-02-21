@@ -96,7 +96,9 @@ install:
 before_script:
   - TEST_ARGS="'-recursive', '-verbose', '-junit_xml_file', 'testresults.xml'";
     if [ "$COVERAGE" = "true" ]; then
-        TEST_ARGS+=", '-with_coverage', '-cover', '$PACKAGE_FOLDER', '-cover_xml_file', 'coverage.xml', '-cover_json_file', 'coveralls.json'";
+        TEST_ARGS+=", '-with_coverage', '-cover', '$PACKAGE_FOLDER'";
+        TEST_ARGS+=", '-cover_xml_file', 'coverage.xml'";
+        TEST_ARGS+=", '-cover_json_file', 'coveralls.json'";
     fi;
     TEST_COMMAND="exit(~moxunit_runtests('tests', $TEST_ARGS));";
     echo "TEST_COMMAND| $TEST_COMMAND";
