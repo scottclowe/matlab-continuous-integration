@@ -25,7 +25,7 @@
 function test_suite=my_test_of_abs
     initTestSuite
 
-function test_abs_scalar
+function test_abs_scalar  %#ok<*DEFNU>
     assertTrue(abs(-1)==1)
     assertEqual(abs(-NaN),NaN);
     assertEqual(abs(-Inf),Inf);

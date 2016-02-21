@@ -7,7 +7,7 @@ function test_suite=rectifiedCubic_test()
     initTestSuite;
 end
 
-function test_input_handling()
+function test_input_handling()  %#ok<*DEFNU>
     % Check that an error is thrown for a bad input. The second
     % parameter is the expected error message, which in our case is
     % omitted because rectifiedCubic throws the error with a call to
