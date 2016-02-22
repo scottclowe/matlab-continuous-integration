@@ -1,0 +1,3 @@
+[submodule "mopi"]
+	path = mopi
+	url = https://github.com/scottclowe/mopi.git
