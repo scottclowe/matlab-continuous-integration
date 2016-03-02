@@ -1,6 +1,4 @@
-# We pretend to be Java because we need GNU Octave which is not 
-# available (as of January 2016)
-language: java
+language: generic
 
 ###############################################################################
 cache:
