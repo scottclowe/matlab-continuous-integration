@@ -63,8 +63,7 @@ before_install:
           echo "==================================================================";
           echo "Installing $PN from Octave Forge";
           echo "------------------------------------------------------------------";
-          CMD="octave -q --eval \"pkg install -forge $PN\"";
-          travis_retry eval $CMD;
+          travis_retry octave -q --eval "pkg install -forge $PN";
           if [[ $? -ne 0 ]]; then
             echo "Failed to install $PN from forge";
             return 1;
